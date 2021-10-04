@@ -12,10 +12,10 @@ import configuration as cfg
 if __name__ == '__main__':
 
     # Experiment id matching the training exp id
-    exp_id = f"Xception-augmentation-ep-{cfg.XCP_NUM_EPOCHS}-face-dataset-with-nvidia-and-print-scan-on-nvidia-new"
+    exp_id = f"Xception-augmentation-ep-{cfg.XCP_NUM_EPOCHS}-face-dataset"
 
     # Load model
-    model_file = 'models/checkpoints/Xception-augmentation-ep-30-face-dataset-with-nvidia-and-print-scan/ckpt.epoch30-loss0.05.h5'
+    model_file = 'models/checkpoints/....'
     model = tf.keras.models.load_model(model_file)
 
     # Paths to test set
