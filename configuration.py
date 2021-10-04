@@ -18,16 +18,8 @@
 # Directories
 # ---------------------------------------------------------------------------------
 
-#XCP_TRAIN_FOLDER = '/media/benedetta/e257df19-3c9a-4a5e-8ebc-43bc9a6ce05d/Datasets/Semafor_Cooccurrence/PRINTSCAN/299/Train'
-#XCP_TEST_FOLDER = '/media/benedetta/e257df19-3c9a-4a5e-8ebc-43bc9a6ce05d/Datasets/Semafor_Cooccurrence/PRINTSCAN/299/Test'
-
-#XCP_TEST_FOLDER = '/media/benedetta/e257df19-3c9a-4a5e-8ebc-43bc9a6ce05d/Datasets/Semafor_Cooccurrence/CNN/NewNvidiaFaces/299/Test'
-
-XCP_TRAIN_FOLDER = '/media/benedetta/e257df19-3c9a-4a5e-8ebc-43bc9a6ce05d/Datasets/Semafor_Cooccurrence/CNN/299/Train'
-XCP_TEST_FOLDER = '/media/benedetta/e257df19-3c9a-4a5e-8ebc-43bc9a6ce05d/Datasets/Semafor_Cooccurrence/CNN/299/Test'
-
-# XCP_TRAIN_FOLDER = '/media/benedetta/e257df19-3c9a-4a5e-8ebc-43bc9a6ce05d/Datasets/Semafor_Cooccurrence/CNN/MixedDataset/299/Train'
-# XCP_TEST_FOLDER = '/media/benedetta/e257df19-3c9a-4a5e-8ebc-43bc9a6ce05d/Datasets/Semafor_Cooccurrence/CNN/MixedDataset/299/Test'
+XCP_TRAIN_FOLDER = './Datasets/CNN/299/Train'
+XCP_TEST_FOLDER = './Datasets/CNN/299/Test'
 
 
 # ---------------------------------------------------------------------------------
