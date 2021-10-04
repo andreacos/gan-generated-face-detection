@@ -22,37 +22,6 @@ from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D, Input, GlobalAveragePooling2D
 
 
-def efficient_net(in_shape=(299, 299, 3), num_classes=2):
-
-    base_model = tf.keras.applications.EfficientNetB1(include_top=False,
-                                                      input_tensor=None,
-                                                      input_shape=in_shape,
-                                                      pooling=None,
-                                                      weights='imagenet',
-                                                      classes=num_classes,
-                                                      classifier_activation="softmax")
-    base_model.trainable = True
-    model = Sequential(name="GAN_Detector")
-    model.add(base_model)
-    model.add(GlobalAveragePooling2D(name="gap"))
-    model.add(Dropout(0.3, name="dropout_out"))
-    model.add(Dense(num_classes, activation="softmax", name="predictions"))
-
-    '''
-    base_model = tf.keras.applications.EfficientNetB2(weights='imagenet', include_top=False, input_shape=in_shape,
-                                                      pooling='avg')
-    base_model.trainable = True
-
-    x = base_model.output
-    x = Dense(256, activation='relu')(x)
-    x = Dropout(0.2)(x)
-    predictions = Dense(num_classes, activation='softmax')(x)
-    model = Model(inputs=base_model.input, outputs=predictions)
-    '''
-
-    return model
-
-
 def xception_net(in_shape=(299, 299, 3), num_classes=2):
 
     base_model = tf.keras.applications.Xception(weights='imagenet', include_top=False, input_shape=in_shape, pooling='avg')
@@ -63,79 +32,5 @@ def xception_net(in_shape=(299, 299, 3), num_classes=2):
     x = Dropout(0.5)(x)
     predictions = Dense(num_classes, activation='softmax')(x)
     model = Model(inputs=base_model.input, outputs=predictions)
-
-    return model
-
-
-def GAN_net(in_shape=(256, 256, 6), num_classes=2):
-
-    model = Sequential()
-    model.add(Conv2D(32, kernel_size=(3, 3), strides=(1, 1), input_shape=in_shape, name='convRes',  activation='relu'))
-    model.add(Conv2D(32, kernel_size=(5, 5), strides=(1, 1), name='conv1', padding='same'))
-    model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), name='pool1'))
-    model.add(Conv2D(64, kernel_size=(3, 3), strides=(1, 1), name='conv2', activation='relu', padding='same'))
-    model.add(Conv2D(64, kernel_size=(5, 5), strides=(1, 1), name='conv3', padding='same'))
-    model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), name='pool2'))
-    model.add(Conv2D(128, kernel_size=(3, 3), strides=(1, 1), name='conv4', activation='relu', padding='same'))
-    model.add(Conv2D(128, kernel_size=(5, 5), strides=(1, 1), name='conv5', padding='same'))
-    model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), name='pool3'))
-    model.add(Flatten())
-    model.add(Dense(256, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(256, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(num_classes, activation='softmax', name='predictions'))
-
-    return model
-
-
-def contrast_net(in_shape=(64, 64, 3), num_classes=2, nf_base=64, layers_depth=(4, 3)):
-
-    """ Builds the graph for a CNN based on Keras (TensorFlow backend)
-    Args:
-       in_shape: shape of the input image (Height x Width x Depth).
-       num_classes: number of output classes
-       nf_base: number of filters in the first layer
-       layers_depth: number of convolutions at each layer
-    Returns:
-       Keras sequential model.
-    """
-
-    model = Sequential()
-
-    # First batch of convolutions followed by Max Pooling
-    model.add(Conv2D(nf_base, kernel_size=(3, 3), strides=(1, 1), input_shape=in_shape, activation='relu',
-                     name='conv1_1'))
-
-    for i in range(0, layers_depth[0]):
-        model.add(Conv2D(nf_base + nf_base * (i + 1),
-                         kernel_size=(3, 3),
-                         strides=(1, 1),
-                         activation='relu',
-                         name='conv1_{}'.format(i + 2)))
-
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    last_size = nf_base + nf_base * (i + 1)
-
-    # Second batch of convolutions followed by Max Pooling
-    for i in range(0, layers_depth[1]):
-        model.add(Conv2D(last_size + nf_base * (i + 1),
-                         kernel_size=(3, 3),
-                         strides=(1, 1),
-                         activation='relu',
-                         name='conv2_{}'.format(i + 2)))
-
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    # One last convolution with half the number of filters of the previous step
-    nf = int(model.layers[-1].output_shape[-1] / 2)
-    model.add(Conv2D(nf, kernel_size=(1, 1), strides=1, name='conv3_1'))
-
-    # Flatten before fully-connected layer
-    model.add(Flatten())
-    model.add(Dense(250, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(num_classes, activation='softmax', name='predictions'))
 
     return model
