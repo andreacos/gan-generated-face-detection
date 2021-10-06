@@ -23,7 +23,7 @@ You can download a pre-trained model [here]().
 ## Datasets
 The pre-trained model has been trained/tested with the following dataset
 - 100000 GAN generated faces with [Nvidia StyleGan2](https://github.com/NVlabs/stylegan2) using config-f mode, i.e. *stylegan2-ffhq-config-f.pkl*, and truncations_psi in [0.3, 0.4, 0.5, 0.6, 0.65, 0.7, 0.75, 0.8, 0.9, 1]
-- 100000 REAL faces (70000 from [FlickrFaceHQ dataset](https://github.com/NVlabs/ffhq-dataset) and 30000 from [CelebAHQ dataset](github.com/tkarras/progressive_growing_of_gans).
+- 100000 REAL faces (70000 from [FlickrFaceHQ dataset](https://github.com/NVlabs/ffhq-dataset) and 30000 from [CelebAHQ dataset](https://github.com/tkarras/progressive_growing_of_gans).
 
 90% of the images have been used for training and 10% for testing (randomly selected)
 All the images have been resized from 1024x1024x3 to the size of 299x299x3 before training/test.
