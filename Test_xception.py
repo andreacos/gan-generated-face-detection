@@ -15,7 +15,7 @@ if __name__ == '__main__':
     exp_id = f"Xception-augmentation-ep-{cfg.XCP_NUM_EPOCHS}-face-dataset"
 
     # Load model
-    model_file = 'models/checkpoints/....'
+    model_file = 'model-gan-no-gan.h5'
     model = tf.keras.models.load_model(model_file)
 
     # Paths to test set
