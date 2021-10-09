@@ -24,6 +24,12 @@ The pre-trained model has been trained/tested with the following dataset
 90% of the images have been used for training and 10% for testing (randomly selected)
 All the images have been resized from 1024x1024x3 to the size of 299x299x3 before training/test.
 
+We provide the list of images that have been used to train and test the network as .txt file in the *resource* folder:
+- [Pristine images for training](https://github.com/andreacos/gan-generated-face-detection/blob/main/resources/pristine_train.txt)
+- [GAN images for training](https://github.com/andreacos/gan-generated-face-detection/blob/main/resources/gan_train.txt). Images with prefix *img* belong to the FlickrFaceHQ dataset, the rest of the images belong to the CelebAHQ dataset.
+- [Pristine images for test](https://github.com/andreacos/gan-generated-face-detection/blob/main/resources/pristine_test.txt
+- [GAN images for test](https://github.com/andreacos/gan-generated-face-detection/blob/main/resources/gan_test.txt)
+
 ## Training
 To train a new model, use the script (Train_xception.py)[https://github.com/andreacos/gan-generated-face-detection/blob/main/Train_xception.py]. To modify training parameters, edit (configuration.py)[https://github.com/andreacos/gan-generated-face-detection/blob/main/configuration.py].
 
